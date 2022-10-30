@@ -57,9 +57,13 @@ const CompanyLogin = () => {
             type="submit"
             classname={`mb-3 ${styles.button}`}
           />
-          <small className={`align-self-center ${styles.switch}`}>
+          <small className={`align-self-center mb-2 ${styles.switch}`}>
             Anda belum punya akun?
             <Link href={"/auth/company/register"}>Daftar di sini</Link>
+          </small>
+          <small className={`align-self-center text-center ${styles.switch}`}>
+            Sedang mencari pekerjaan baru?
+            <Link href={"/auth/login"}>Cari pekerjaan di sini</Link>
           </small>
         </form>
       </section>

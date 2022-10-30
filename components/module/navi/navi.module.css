@@ -1,0 +1,54 @@
+.navi {
+  width: 100%;
+  max-width: 100vw;
+  min-height: 80px;
+  position: fixed;
+  top: 0;
+  background-color: #ffffff;
+  padding: 0 80px;
+  transition: 0.5s;
+  float: center;
+  z-index: 2;
+}
+
+.toggler,
+.toggler:focus {
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  outline: none;
+}
+
+.btn-purple,
+.btn-white {
+  height: 40px;
+  width: 100px;
+  background-color: #5e50a1;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border: 1px solid #5e50a1;
+  border-radius: 4px;
+  margin-left: 15px;
+}
+
+.btn-white {
+  background-color: #ffffff;
+  color: #5e50a1;
+}
+
+.btn-white:hover {
+  background-color: #5e50a1;
+  color: #ffffff;
+  transition: 0.5s;
+}
+
+.btn-purple:focus,
+.btn-white:focus {
+  outline: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .navi {
+    padding: 10px;
+  }
+}
