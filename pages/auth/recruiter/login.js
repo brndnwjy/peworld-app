@@ -4,9 +4,41 @@ import { useRouter } from "next/router";
 import Input from "../../../components/base/input";
 import Button from "../../../components/base/button";
 import styles from "../../../styles/auth.module.css";
+import { useState } from "react";
+import axios from "axios";
 
 const CompanyLogin = () => {
   const router = useRouter();
+
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInput = (e) => {
+    setLoginForm({
+      ...loginForm,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:4000/v1/company/login", loginForm, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        localStorage.setItem("token", res.data.data.token);
+        localStorage.setItem("company", JSON.stringify(res.data.data));
+        router.push("/home");
+      })
+      .catch(() => {
+        alert("login gagal");
+      });
+  };
+
   return (
     <main className={styles.main}>
       <section className={`col-md-6 ${styles.banner}`}>
@@ -32,7 +64,7 @@ const CompanyLogin = () => {
         />
         <h1>Halo, Pewpeople</h1>
         <h5>Login dengan akunmu untuk mulai merekrut talent!</h5>
-        <form className="d-flex flex-column ">
+        <form onSubmit={handleLogin} className="d-flex flex-column ">
           <Input
             label="Email"
             id="email"
@@ -40,6 +72,7 @@ const CompanyLogin = () => {
             type="email"
             placeholder="Masukkan alamat email"
             classname={`mb-4 ${styles.input}`}
+            onchange={handleInput}
           />
           <Input
             label="Kata sandi"
@@ -48,6 +81,7 @@ const CompanyLogin = () => {
             type="password"
             placeholder="Masukkan kata sandi"
             classname={`mb-4 ${styles.input}`}
+            onchange={handleInput}
           />
           <Link href={"/auth/forgot"} className={`mb-3 ${styles.forgot}`}>
             Lupa kata sandi?

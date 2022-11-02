@@ -4,9 +4,44 @@ import { useRouter } from "next/router";
 import Input from "../../../components/base/input";
 import Button from "../../../components/base/button";
 import styles from "../../../styles/auth.module.css";
+import { useState } from "react";
+import axios from "axios";
 
 const Register = () => {
   const router = useRouter();
+
+  const [registerForm, setRegisterForm] = useState({
+    fullname: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
+
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleInput = (e) => {
+    setRegisterForm({
+      ...registerForm,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+
+    if (registerForm.password !== confirmPassword) {
+      return console.log("password tidak sama");
+    }
+
+    axios
+      .post("http://localhost:4000/v1/user/register", registerForm)
+      .then(() => {
+        router.push("/auth/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <main className={styles.main}>
       <section className={`col-md-6 ${styles.banner}`}>
@@ -30,7 +65,7 @@ const Register = () => {
         />
         <h1>Halo, Pewpeople</h1>
         <h5>Buat akun baru untuk mulai mencari pekerjaan!</h5>
-        <form className="d-flex flex-column ">
+        <form onSubmit={handleRegister} className="d-flex flex-column ">
           <Input
             label="Nama"
             id="fullname"
@@ -38,6 +73,7 @@ const Register = () => {
             type="text"
             placeholder="Masukkan nama panjang"
             classname={`mb-4 ${styles.input}`}
+            onchange={handleInput}
           />
           <Input
             label="Email"
@@ -46,6 +82,7 @@ const Register = () => {
             type="email"
             placeholder="Masukkan alamat email"
             classname={`mb-4 ${styles.input}`}
+            onchange={handleInput}
           />
           <Input
             label="Nomor handphone"
@@ -54,6 +91,7 @@ const Register = () => {
             type="tel"
             placeholder="Masukkan nomor handphone"
             classname={`mb-4 ${styles.input}`}
+            onchange={handleInput}
           />
           <Input
             label="Kata sandi"
@@ -62,14 +100,16 @@ const Register = () => {
             type="password"
             placeholder="Masukkan kata sandi"
             classname={`mb-4 ${styles.input}`}
+            onchange={handleInput}
           />
           <Input
             label="Konfirmasi kata sandi"
-            id="conformpassword"
-            name="conformpassword"
+            id="confirmpassword"
+            name="confirmpassword"
             type="password"
             placeholder="Konfirmasi kata sandi"
             classname={`mb-4 ${styles.input}`}
+            onchange={(e) => setConfirmPassword(e.target.value)}
           />
           <Button
             title="Daftar"

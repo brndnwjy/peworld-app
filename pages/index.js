@@ -246,7 +246,7 @@ const Landing = () => {
         </section>
 
         <section
-          className={`col-12 d-flex justify-content-center align-items-center p-0 m-0 ${styles.card}`}
+          className={`col-12 d-flex justify-content-center align-items-center p-0 mb-5 m-0 ${styles.card}`}
         >
           <div className="d-flex flex-column flex-md-row justify-content-center justify-content-md-between align-items-center">
             <h3>Lorem Ipsum</h3>
