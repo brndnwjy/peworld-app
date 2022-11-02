@@ -1,0 +1,165 @@
+.main {
+  width: 100vw;
+  display: flex;
+  background-color: #f5f5f5;
+  padding: 25px 80px;
+}
+
+.bg-purple {
+  content: "";
+  position: absolute;
+  background-color: #5e50a1;
+  width: 100%;
+  height: 400px;
+}
+
+.profile {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 100px;
+  background-color: #ffffff;
+  margin-top: 100px;
+  border: none;
+  border-radius: 6px;
+  padding: 30px 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.profile img {
+  align-self: center;
+  border: none;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.location,
+.profile > p {
+  /* color: #f5f5f5; */
+  margin: 5px 0;
+}
+
+.btn-purple {
+  height: 40px;
+  background-color: #5e50a1;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  margin: 20px 0 0;
+}
+
+.btn-white {
+  height: 40px;
+  background-color: #ffffff;
+  color: #5e50a1;
+  font-size: 16px;
+  font-weight: 700;
+  border: 1px solid #5e50a1;
+  border-radius: 4px;
+  margin: 20px 0 0;
+}
+
+.btn-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #b4b4b4;
+  border: none;
+  margin: 10px 0 15px;
+}
+
+.skillset {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.skillset span {
+  background-color: rgba(251, 176, 23, 0.8);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #fbb017;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  /* color: #f5f5f5; */
+  margin-bottom: 15px;
+}
+
+.contact span {
+  line-height: 15px;
+  padding-left: 10px;
+}
+
+.infograph {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 100px;
+  padding: 0;
+}
+
+.info-card {
+  width: 95%;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 30px 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.portfolio img {
+  width: 100%;
+  object-fit: cover;
+  border: 1px solid black;
+  border-radius: 6px;
+}
+
+.experience {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.experience img {
+  object-fit: cover;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .main {
+    flex-direction: column;
+    padding: 25px 10px;
+  }
+
+  .profile {
+    position: relative;
+    margin: 0 0 30px;
+  }
+
+  .info-card {
+    width: 100%;
+  }
+}
