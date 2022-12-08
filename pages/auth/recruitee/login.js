@@ -6,6 +6,7 @@ import Button from "../../../components/base/button";
 import styles from "../../../styles/auth.module.css";
 import { useState } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 
 const Login = () => {
   const router = useRouter();
@@ -32,10 +33,19 @@ const Login = () => {
       .then((res) => {
         localStorage.setItem("token", res.data.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.data));
-        router.push("/home");
+        router.push(`/profile/${res.data.data.user_id}`);
+        swal({
+          title: "Logged In",
+          text: `Welcome Back!`,
+          icon: "success",
+        });
       })
       .catch(() => {
-        alert("login gagal");
+        swal({
+          title: "Failed",
+          text: `Email or password incorrect!`,
+          icon: "warning",
+        });
       });
   };
 

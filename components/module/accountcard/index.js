@@ -4,12 +4,12 @@ import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
 import styles from "./accountcard.module.css";
 import Button from "../../base/button";
 
-const AccountCard = ({name, job, location}) => {
+const AccountCard = ({avatar, name, job, location, action}) => {
   return (
     <div className={styles.card}>
       <div className={styles["card-info"]}>
         <Image
-          src={"/assets/banner.png"}
+          src={avatar ? avatar : "/assets/banner.png"}
           alt="user avatar"
           width={100}
           height={100}
@@ -31,7 +31,7 @@ const AccountCard = ({name, job, location}) => {
           </div>
         </div>
       </div>
-      <Button title="Lihat Profile" type="button" classname={styles.button} />
+      <Button title="Lihat Profile" type="button" classname={styles.button} onclick={action}/>
     </div>
   );
 };

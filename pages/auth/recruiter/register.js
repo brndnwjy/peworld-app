@@ -1,12 +1,59 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import axios from "axios";
+import swal from "sweetalert";
 import Input from "../../../components/base/input";
 import Button from "../../../components/base/button";
 import styles from "../../../styles/auth.module.css";
 
 const CompanyRegister = () => {
   const router = useRouter();
+
+  const [registerForm, setRegisterForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
+
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleInput = (e) => {
+    setRegisterForm({
+      ...registerForm,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+
+    if (registerForm.password !== confirmPassword) {
+      return console.log("password tidak sama");
+    }
+
+    axios
+      .post("http://localhost:4000/v1/company/register", registerForm)
+      .then(() => {
+        router.push("/auth/company/login");
+        swal({
+          title: "Registered",
+          text: `Please login with you account`,
+          icon: "success",
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        swal({
+          title: "Failed",
+          text: `Please make sure your data is correct!`,
+          icon: "warning",
+        });
+      });
+  };
+
   return (
     <main className={styles.main}>
       <section className={`col-md-6 ${styles.banner}`}>
@@ -32,13 +79,14 @@ const CompanyRegister = () => {
         />
         <h1>Halo, Pewpeople</h1>
         <h5>Buat akun baru untuk mulai mencari talent!</h5>
-        <form className="d-flex flex-column ">
-          <Input
-            label="Nama"
-            id="fullname"
-            name="fullname"
+        <form className="d-flex flex-column" onSubmit={handleRegister}>
+        <Input
+            label="Perusahaan"
+            id="name"
+            name="name"
             type="text"
-            placeholder="Masukkan nama panjang"
+            onchange={handleInput}
+            placeholder="Masukkan nama perusahaan"
             classname={`mb-4 ${styles.input}`}
           />
           <Input
@@ -46,23 +94,8 @@ const CompanyRegister = () => {
             id="email"
             name="email"
             type="email"
+            onchange={handleInput}
             placeholder="Masukkan alamat email"
-            classname={`mb-4 ${styles.input}`}
-          />
-          <Input
-            label="Perusahaan"
-            id="company"
-            name="company"
-            type="text"
-            placeholder="Masukkan nama perusahaan"
-            classname={`mb-4 ${styles.input}`}
-          />
-          <Input
-            label="Jabatan"
-            id="position"
-            name="position"
-            type="text"
-            placeholder="Masukkan jabatan di perusahaan Anda"
             classname={`mb-4 ${styles.input}`}
           />
           <Input
@@ -70,6 +103,7 @@ const CompanyRegister = () => {
             id="phone"
             name="phone"
             type="tel"
+            onchange={handleInput}
             placeholder="Masukkan nomor handphone"
             classname={`mb-4 ${styles.input}`}
           />
@@ -78,14 +112,16 @@ const CompanyRegister = () => {
             id="password"
             name="password"
             type="password"
+            onchange={handleInput}
             placeholder="Masukkan kata sandi"
             classname={`mb-4 ${styles.input}`}
           />
           <Input
             label="Konfirmasi kata sandi"
-            id="conformpassword"
-            name="conformpassword"
+            id="confirmpassword"
+            name="confirmpassword"
             type="password"
+            onchange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Konfirmasi kata sandi"
             classname={`mb-4 ${styles.input}`}
           />

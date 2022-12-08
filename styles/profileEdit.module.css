@@ -143,6 +143,7 @@
   padding: 0;
 }
 
+.field-label,
 .input label,
 .date-input label,
 .textarea-input label {
@@ -151,13 +152,16 @@
   font-weight: 400;
 }
 
+.select,
 .input input,
 .date-input input {
   width: 100%;
   border: 1px solid #e2e5ed;
   border-radius: 4px;
   padding: 10px;
+  outline: none;
 }
+
 
 .textarea-input input {
   width: 100%;
@@ -167,6 +171,7 @@
   padding: 10px;
 }
 
+.select:focus,
 .input input:focus,
 .textarea-input input:focus,
 .date-input input:focus {

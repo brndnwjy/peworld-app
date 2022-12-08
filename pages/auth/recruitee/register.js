@@ -6,6 +6,7 @@ import Button from "../../../components/base/button";
 import styles from "../../../styles/auth.module.css";
 import { useState } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 
 const Register = () => {
   const router = useRouter();
@@ -37,9 +38,19 @@ const Register = () => {
       .post("http://localhost:4000/v1/user/register", registerForm)
       .then(() => {
         router.push("/auth/login");
+        swal({
+          title: "Registered",
+          text: `Please login with you account`,
+          icon: "success",
+        });
       })
       .catch((err) => {
         console.log(err);
+        swal({
+          title: "Failed",
+          text: `Please make sure your data is correct!`,
+          icon: "warning",
+        });
       });
   };
   return (

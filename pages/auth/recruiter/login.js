@@ -6,6 +6,7 @@ import Button from "../../../components/base/button";
 import styles from "../../../styles/auth.module.css";
 import { useState } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 
 const CompanyLogin = () => {
   const router = useRouter();
@@ -33,9 +34,18 @@ const CompanyLogin = () => {
         localStorage.setItem("token", res.data.data.token);
         localStorage.setItem("company", JSON.stringify(res.data.data));
         router.push("/home");
+        swal({
+          title: "Logged In",
+          text: `Welcome Back!`,
+          icon: "success",
+        });
       })
       .catch(() => {
-        alert("login gagal");
+        swal({
+          title: "Failed",
+          text: `Email or password incorrect!`,
+          icon: "warning",
+        });
       });
   };
 

@@ -1,4 +1,4 @@
-const Input = ({ label, id, name, type, placeholder, onchange, classname }) => {
+const Input = ({ label, id, name, type,value, placeholder, onchange, classname }) => {
   return (
     <div className={classname}>
       {label ? (
@@ -12,6 +12,7 @@ const Input = ({ label, id, name, type, placeholder, onchange, classname }) => {
         id={id}
         name={name}
         type={type}
+        value={value}
         placeholder={placeholder}
         onChange={onchange}
       />
