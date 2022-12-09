@@ -25,7 +25,7 @@ const CompanyEdit = () => {
   const [company, setCompany] = useState();
 
   const [updateForm, setUpdateForm] = useState();
-  const [photo, setPhoto] = useState();
+  const [logo, setLogo] = useState();
   const [preview, setPreview] = useState();
 
   const handleInput = (e) => {
@@ -36,13 +36,13 @@ const CompanyEdit = () => {
   };
 
   const handleFile = (e) => {
-    setPhoto(e.target.files[0]);
+    setLogo(e.target.files[0]);
     setPreview([URL.createObjectURL(e.target.files[0])]);
   };
 
   const handleUpdate = (e) => {
     console.log(updateForm);
-    console.log(photo);
+    console.log(logo);
     e.preventDefault();
 
     let formData = new FormData();
@@ -64,27 +64,30 @@ const CompanyEdit = () => {
     if (updateForm.linkedin) {
       formData.append("linkedin", updateForm.linkedin);
     }
-    if (photo) {
-      formData.append("logo", photo);
+    if (logo) {
+      formData.append("logo", logo);
     }
 
+    // fetch(`http://localhost:4000/v1/company/update/${id}`, {
+    //   body: updateForm,
+    //   headers: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //   },
+    //   method: "put",
+    // })
     axios
-      .put(`http://localhost:4000/v1/company/${id}`, updateForm)
+      .put(`http://localhost:4000/v1/company/update/${id}`, updateForm)
       .then((res) => {
         alert("update berhasil");
         console.log(res.data);
       })
       .catch((err) => {
-        // alert("update gagal")
         console.log(err);
       });
   };
 
-  // useEffect(() => {
-  //   localToken = localStorage ? localStorage.getItem("token") : "";
-  // }, [router.isReady]);
-
   useEffect(() => {
+    console.log("id : ", id);
     getCompany();
   }, [router.isReady]);
 
@@ -92,9 +95,10 @@ const CompanyEdit = () => {
     const result = await axios.get(
       `http://localhost:4000/v1/company/detail/${id}`
     );
-    setCompany(result.data.data);
-    if (result.data.data.logo) {
-      setPreview(result.data.data.logo);
+    console.log(result.data.data[0]);
+    setCompany(result.data.data[0]);
+    if (result.data.data[0].logo) {
+      setPreview(result.data.data[0].logo);
     }
   };
 
@@ -114,7 +118,7 @@ const CompanyEdit = () => {
 
             <Button
               title={
-                <label htmlFor="photo">
+                <label htmlFor="logo">
                   <FontAwesomeIcon icon={faPen} height={13} />
                   <span className="ml-2">Sunting</span>
                 </label>
@@ -124,8 +128,8 @@ const CompanyEdit = () => {
             />
             <input
               type="file"
-              id="photo"
-              name="photo"
+              id="logo"
+              name="logo"
               onChange={handleFile}
               hidden
             />

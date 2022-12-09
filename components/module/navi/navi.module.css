@@ -11,6 +11,10 @@
   z-index: 2;
 }
 
+.nav-text {
+  display: none;
+}
+
 .toggler,
 .toggler:focus {
   border: 1px solid #d4d4d4;
@@ -21,14 +25,14 @@
 .btn-purple,
 .btn-white {
   height: 40px;
-  width: 100px;
+  width: 40px;
   background-color: #5e50a1;
   color: #ffffff;
   font-size: 16px;
   font-weight: 700;
   border: 1px solid #5e50a1;
-  border-radius: 4px;
-  margin-left: 15px;
+  border-radius: 100%;
+  margin-left: 15px !important;
 }
 
 .btn-white {
@@ -50,5 +54,15 @@
 @media only screen and (max-width: 600px) {
   .navi {
     padding: 10px;
+  }
+
+  .nav-text{
+    display: inline;
+  }
+
+  .btn-purple,
+  .btn-white{
+  width: 200px;
+  border-radius: 4px;
   }
 }

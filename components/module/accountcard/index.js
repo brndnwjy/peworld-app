@@ -13,6 +13,7 @@ const AccountCard = ({avatar, name, job, location, action}) => {
           alt="user avatar"
           width={100}
           height={100}
+          style={{objectFit : "cover"}}
         />
         <div className={styles['account-info']}>
           <h4>{name}</h4>

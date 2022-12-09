@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Footer from "../../../components/module/footer";
-import Navi from "../../../components/module/navi";
-import Button from "../../../components/base/button";
-import Input from "../../../components/base/input";
-import styles from "../../../styles/company.module.css";
+import Footer from "../../components/module/footer";
+import Navi from "../../components/module/navi";
+import Button from "../../components/base/button";
+import Input from "../../components/base/input";
+import styles from "../../styles/company.module.css";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -50,7 +50,7 @@ const CompanyProfile = ({ companyData }) => {
 
   return (
     <>
-      {/* <Navi /> */}
+      <Navi />
       <main className={styles.main}>
         <div className={styles["company-card"]}>
           <div className={styles["bg-image"]} />
@@ -89,7 +89,7 @@ const CompanyProfile = ({ companyData }) => {
               title="Edit Profile"
               type="button"
               classname={styles["btn-purple"]}
-              onclick={() => router.push(`${id}/edit`)}
+              onclick={() => router.push(`edit/${id}`)}
             />
 
             <div className="d-flex col-12 flex-column align-items-center justify-content-start">

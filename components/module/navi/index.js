@@ -1,5 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faBell,
+  faSignOut,
+  faHome,
+} from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import swal from "sweetalert";
@@ -10,11 +17,26 @@ const Navi = () => {
   const router = useRouter();
 
   const [isLogout, setIsLogout] = useState(false);
+  const [localData, setLocalData] = useState();
+  const [isToken, setIsToken] = useState(false);
+  const [isRecruiter, setIsRecruiter] = useState(false);
 
-  // let localToken;
-  // let localData;
-  // localToken = localStorage ? localStorage.getItem("token") : "";
-  // localData = localStorage ? JSON.parse(localStorage.getItem("company")) : "";
+  useEffect(() => {
+    let data;
+    if (localStorage.getItem("company")) {
+      data = JSON.parse(localStorage.getItem("company"));
+    } else if (localStorage.getItem("user")) {
+      data = JSON.parse(localStorage.getItem("user"));
+    }
+    setLocalData(data);
+    if (data.company_id || data.user_id) {
+      setIsToken(true);
+    }
+
+    if (data.company_id) {
+      setIsRecruiter(true);
+    }
+  }, []);
 
   const handleLogout = () => {
     swal({
@@ -25,7 +47,7 @@ const Navi = () => {
       dangerMode: true,
     }).then(async (confirm) => {
       if (confirm) {
-        localStorage.clear()
+        localStorage.clear();
         setIsLogout(true);
       }
     });
@@ -49,7 +71,6 @@ const Navi = () => {
         alt="Peworld logo purple"
         width={100}
         height={50}
-        onClick={()=>router.push("/home")}
       />
 
       <button
@@ -71,24 +92,75 @@ const Navi = () => {
         </span>
       </button>
 
-      {/* {localToken ? ( */}
+      {isToken ? (
         <div className="collapse navbar-collapse" id="toggleMenu">
           <ul className="container p-0 navbar-nav text-center d-flex justify-content-end">
-            <div className="d-flex flex-row justify-content-center">
+            <div className="d-flex flex-md-row flex-column justify-content-center">
+              {isRecruiter && (
+                <li>
+                  <Button
+                    title={
+                      <>
+                        <FontAwesomeIcon icon={faHome} />
+                        <span className={`m-0 ml-2 ${styles["nav-text"]}`}>
+                          Home
+                        </span>
+                      </>
+                    }
+                    type="button"
+                    classname={`mb-3 m-md-0 ${styles["btn-white"]}`}
+                    onclick={() => router.push("/home")}
+                  />
+                </li>
+              )}
+
               <li>
                 <Button
-                  title="Profile"
+                  title={
+                    <>
+                      <FontAwesomeIcon icon={faBell} />
+                      <span className={`m-0 ml-2 ${styles["nav-text"]}`}>
+                        Notification
+                      </span>
+                    </>
+                  }
+                  type="button"
+                  classname={`mb-3 m-md-0 ${styles["btn-white"]}`}
+                />
+              </li>
+
+              <li>
+                <Button
+                  title={
+                    <>
+                      <FontAwesomeIcon icon={faUser} />
+                      <span className={`m-0 ml-2 ${styles["nav-text"]}`}>
+                        Profile
+                      </span>
+                    </>
+                  }
                   type="button"
                   classname={`mb-3 m-md-0 ${styles["btn-white"]}`}
                   onclick={() =>
-                    router.push(`/company/${localData.company_id}`)
+                    router.push(
+                      isRecruiter
+                        ? `/company/${localData.company_id}`
+                        : `/profile/${localData.user_id}`
+                    )
                   }
                 />
               </li>
 
               <li>
                 <Button
-                  title="Logout"
+                  title={
+                    <>
+                      <FontAwesomeIcon icon={faSignOut} />
+                      <span className={`m-0 ml-2 ${styles["nav-text"]}`}>
+                        Log Out
+                      </span>
+                    </>
+                  }
                   type="button"
                   classname={styles["btn-purple"]}
                   onclick={handleLogout}
@@ -97,7 +169,7 @@ const Navi = () => {
             </div>
           </ul>
         </div>
-      {/* ) : (
+      ) : (
         <div className="collapse navbar-collapse" id="toggleMenu">
           <ul className="container p-0 navbar-nav text-center d-flex justify-content-end">
             <div className="d-flex flex-row justify-content-center">
@@ -121,7 +193,7 @@ const Navi = () => {
             </div>
           </ul>
         </div>
-      )} */}
+      )}
     </nav>
   );
 };

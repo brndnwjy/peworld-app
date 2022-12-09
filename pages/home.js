@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-key */
 import Navi from "../components/module/navi";
 import Footer from "../components/module/footer";
@@ -88,9 +89,9 @@ const Home = ({ data }) => {
                 <AccountCard
                 avatar={item.avatar}
                   name={item.fullname}
-                  job={item.title === null ? "Part-time Human" : item.title}
+                  job={item.title === null ? "Jobseeker" : item.title}
                   location={
-                    item.location === null ? "Neverland" : item.location
+                    item.location === null ? "Nowhere" : item.location
                   }
                   action={() => router.push(`/profile/${item.user_id}`)}
                 />
@@ -100,7 +101,7 @@ const Home = ({ data }) => {
           <div className={`${styles["page-container"]}`}>
             {pagination &&
               new Array(pagination.totalPage).fill().map((item, index) => (
-                <button onClick={() => handlePage(index + 1)} key={index}>
+                <button className={styles['page-btn']} onClick={() => handlePage(index + 1)} key={index}>
                   {index + 1}
                 </button>
               ))}

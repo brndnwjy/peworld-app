@@ -14,6 +14,7 @@ import Input from "../../../components/base/input";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import swal from "sweetalert";
 
 const ProfileEdit = () => {
   const router = useRouter();
@@ -72,13 +73,19 @@ const ProfileEdit = () => {
     axios
       .put(`http://localhost:4000/v1/user/update/${id}`, formData)
       .then(() => {
-        alert("Sukses");
+        swal({
+          title: "Account updated!",
+          icon: "success",
+        });
         setUpdate();
-        router.push();
+        router.back();
       })
       .catch((err) => {
         console.log(err);
-        alert("Gagal");
+        swal({
+          title: "Failed",
+          icon: "warning",
+        });
       });
   };
 
@@ -95,7 +102,10 @@ const ProfileEdit = () => {
       axios
         .post(`http://localhost:4000/v1/user/skill`, newSkill)
         .then(() => {
-          alert("Sukses");
+          swal({
+            title: "Skill added!",
+            icon: "success",
+          });
           setNewSkill({
             ...newSkill,
             name: "",
@@ -103,7 +113,10 @@ const ProfileEdit = () => {
         })
         .catch((err) => {
           console.log(err);
-          alert("Gagal");
+          swal({
+            title: "Failed",
+            icon: "warning",
+          });
         });
     } else {
       alert("harap masukkan data");
@@ -126,7 +139,10 @@ const ProfileEdit = () => {
       axios
         .post(`http://localhost:4000/v1/user/experience`, newExp)
         .then(() => {
-          alert("Sukses");
+          swal({
+            title: "Experience added!",
+            icon: "success",
+          });
           // setNewSkill({
           //   ...newSkill,
           //   name: "",
@@ -134,10 +150,17 @@ const ProfileEdit = () => {
         })
         .catch((err) => {
           console.log(err);
-          alert("Gagal");
+          swal({
+            title: "Failed",
+            icon: "warning",
+          });
         });
     } else {
-      alert("harap lengkapi data");
+      swal({
+        title: "Failed",
+        text: "Make sure to fill all the data required",
+        icon: "warning",
+      });
     }
   };
 
@@ -164,13 +187,19 @@ const ProfileEdit = () => {
     axios
       .post(`http://localhost:4000/v1/user/portfolio`, formData)
       .then(() => {
-        alert("Sukses");
+        swal({
+          title: "Portfolio added",
+          icon: "added",
+        });
         // setUpdate();
         router.push();
       })
       .catch((err) => {
         console.log(err);
-        alert("Gagal");
+        swal({
+          title: "Failed",
+          icon: "warning",
+        });
       });
   };
 
@@ -211,12 +240,22 @@ const ProfileEdit = () => {
       <main className={styles.main}>
         <section className={`col-12 col-md-3 ${styles["profile-card"]}`}>
           <div className={`col-12 ${styles.profile}`}>
-            <Image
-              src={avatarPreview ? avatarPreview : user ? user.avatar : ""}
-              alt="user avatar"
-              width={100}
-              height={100}
-            />
+
+            {user?.avatar ? (
+              <Image
+                src={avatarPreview ? avatarPreview : user.avatar}
+                alt="user avatar"
+                width={100}
+                height={100}
+              />
+            ) : (
+              <Image
+                src={"/assets/banner.png"}
+                alt="user avatar"
+                width={100}
+                height={100}
+              />
+            )}
 
             <label htmlFor="userUpdate" className={styles["btn-edit"]}>
               <FontAwesomeIcon icon={faPen} height={13} />
@@ -225,11 +264,11 @@ const ProfileEdit = () => {
 
             <input id="userUpdate" type="file" onChange={handleAvatar} hidden />
 
-            <h4 className="m-0">{user ? user.fullname : ""}</h4>
-            <h6 className="m-0">{user ? user.title : ""}</h6>
+            <h4 className="m-0">{user ? user.fullname : "Nama"}</h4>
+            <h6 className="m-0">{user?.title ? user.title : "Jobseeker"}</h6>
             <div className={styles.location}>
               <FontAwesomeIcon icon={faLocationPin} height={13} />
-              <span className="ml-2">{user ? user.location : ""}</span>
+              <span className="ml-2">{user?.location ? user.location : "Nowhere"}</span>
             </div>
           </div>
 
@@ -259,7 +298,7 @@ const ProfileEdit = () => {
                 id="fullname"
                 name="fullname"
                 type="text"
-                placeholder={user ? user.fullname : "Masukkan nama lengkap"}
+                placeholder={user?.fullname ? user.fullname : "Masukkan nama lengkap"}
                 onchange={handleInput}
                 classname={`mb-4 ${styles.input}`}
               />
@@ -268,7 +307,7 @@ const ProfileEdit = () => {
                 id="title"
                 name="title"
                 type="text"
-                placeholder={user ? user.title : "Masukkan bidang pekerjaan"}
+                placeholder={user?.title ? user.title : "Masukkan bidang pekerjaan"}
                 onchange={handleInput}
                 classname={`mb-4 ${styles.input}`}
               />
@@ -278,7 +317,7 @@ const ProfileEdit = () => {
                 name="location"
                 type="text"
                 placeholder={
-                  user ? user.location : "Masukkan domisili tempat tinggal"
+                  user?.location ? user.location : "Masukkan domisili tempat tinggal"
                 }
                 onchange={handleInput}
                 classname={`mb-4 ${styles.input}`}
@@ -289,7 +328,7 @@ const ProfileEdit = () => {
                 name="description"
                 type="text"
                 placeholder={
-                  user ? user.description : "Masukkan deskripsi diri"
+                  user?.description ? user.description : "Masukkan deskripsi diri"
                 }
                 onchange={handleInput}
                 classname={`mb-4 ${styles.input}`}
@@ -299,7 +338,7 @@ const ProfileEdit = () => {
                 id="insta"
                 name="insta"
                 type="text"
-                placeholder={user ? user.insta : "Masukkan akun Instagram"}
+                placeholder={user?.insta ? user.insta : "Masukkan akun Instagram"}
                 onchange={handleInput}
                 classname={`mb-4 ${styles.input}`}
               />
@@ -308,7 +347,7 @@ const ProfileEdit = () => {
                 id="github"
                 name="github"
                 type="text"
-                placeholder={user ? user.github : "Masukkan akun Github"}
+                placeholder={user?.github ? user.github : "Masukkan akun Github"}
                 onchange={handleInput}
                 classname={`mb-4 ${styles.input}`}
               />
@@ -317,7 +356,7 @@ const ProfileEdit = () => {
                 id="linkedin"
                 name="linkedin"
                 type="text"
-                placeholder={user ? user.linkedin : "Masukkan akun Linkedin"}
+                placeholder={user?.linkedin ? user.linkedin : "Masukkan akun Linkedin"}
                 onchange={handleInput}
                 classname={styles.input}
               />
@@ -378,7 +417,7 @@ const ProfileEdit = () => {
                 }
                 className={`mb-4 ${styles.select}`}
               >
-                <option selected>Select company</option>
+                <option defaultValue>Select company</option>
                 {companies
                   ? companies.map((item, index) => (
                       <option value={item.company_id} key={index}>
@@ -496,7 +535,7 @@ const ProfileEdit = () => {
                 className={`mb-4 ${styles["file-input"]}`}
                 htmlFor="app-image"
               >
-                {portoImgPreview !== null ? (
+                {portoImgPreview ? (
                   <Image src={portoImgPreview} alt="Porto" />
                 ) : (
                   <>

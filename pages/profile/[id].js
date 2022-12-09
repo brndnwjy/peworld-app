@@ -6,9 +6,9 @@ import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Footer from "../../../components/module/footer";
-import Navi from "../../../components/module/navi";
-import Button from "../../../components/base/button";
+import Footer from "../../components/module/footer";
+import Navi from "../../components/module/navi";
+import Button from "../../components/base/button";
 import {
   faLocationPin,
   faEnvelope,
@@ -19,19 +19,37 @@ import {
   faGithub,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import styles from "../../../styles/profile.module.css";
+import styles from "../../styles/profile.module.css";
 import swal from "sweetalert";
 
 const Profile = () => {
   const router = useRouter();
   const { id } = router.query;
-  // let localToken;
-  // let localData;
 
-  const [user, setUser] = useState();
+  const [isWorker, setIsWorker] = useState(false);
+
+  const [user, setUser] = useState(false);
   const [skills, setSkills] = useState();
   const [portos, setPortos] = useState();
   const [expis, setExpis] = useState();
+
+  useEffect(() => {
+    let data;
+    if (localStorage.getItem("company")) {
+      data = JSON.parse(localStorage.getItem("company"));
+    } else if (localStorage.getItem("user")) {
+      data = JSON.parse(localStorage.getItem("user"));
+    }
+
+    console.log("data");
+    console.log(data);
+    console.log("id");
+    console.log(id);
+
+    if (data.user_id) {
+      setIsWorker(true);
+    }
+  }, []);
 
   // Delete function
   const deletePorto = (val) => {
@@ -71,11 +89,6 @@ const Profile = () => {
       }
     });
   };
-
-  // useEffect(() => {
-  //   localToken = localStorage ? localStorage.getItem("token") : "";
-  //   localData = localStorage ? localStorage.getItem("user") : "";
-  // }, [router.isReady]);
 
   useEffect(() => {
     axios
@@ -131,17 +144,29 @@ const Profile = () => {
       <div className={styles["bg-purple"]} />
       <main className={styles.main}>
         <section className={`col-12 col-md-3 ${styles.profile}`}>
-          <img
-            src={user ? user.avatar : ""}
-            alt="user avatar"
-            width={100}
-            height={100}
-          />
+          {user?.avatar ? (
+            <img
+              src={user.avatar}
+              alt="user avatar"
+              width={100}
+              height={100}
+              style={{ objectFit: "cover" }}
+            />
+          ) : (
+            <img
+              src={"/assets/banner.png"}
+              alt="user avatar"
+              width={100}
+              height={100}
+            />
+          )}
           <h4 className="m-0">{user ? user.fullname : ""}</h4>
-          <h6 className="m-0">{user ? user.title : ""}</h6>
+          <h6 className="m-0">{user?.title ? user.title : "Jobseeker"}</h6>
           <div className={styles.location}>
             <FontAwesomeIcon icon={faLocationPin} height={13} />
-            <span className="ml-2">{user ? user.location : ""}</span>
+            <span className="ml-2">
+              {user?.location ? user.location : "Nowhere"}
+            </span>
           </div>
           <p>
             {user
@@ -151,27 +176,30 @@ const Profile = () => {
           </p>
 
           <Button
-            // title={user ? "Sunting" : "Rekrut"}
-            title="Rekrut"
+            title={isWorker ? "Sunting" : "Rekrut"}
             type="button"
             classname={styles["btn-purple"]}
-            // onclick={() => {
-            //   localStorage.getItem("user")
-            //     ? router.push(`/profile/${id}/edit`)
-            //     : router.push(`/hiring/${id}`);
-            // }}
             onclick={() => {
-              router.push(`/hiring/${id}`);
+              isWorker
+                ? router.push(`/profile/edit/${id}`)
+                : router.push(`/hiring/${id}`);
             }}
+            // onclick={() => {
+            //   router.push(`/hiring/${id}`);
+            // }}
           />
 
           {/* skill info */}
-          <h4>Skill</h4>
-          <div className={styles.skillset}>
-            {skills
-              ? skills.map((skill) => <span>{skill.skill_name}</span>)
-              : ""}
-          </div>
+          {skills && skills.length > 0 && (
+            <>
+              <h4>Skill</h4>
+              <div className={styles.skillset}>
+                {skills
+                  ? skills.map((skill) => <span>{skill.skill_name}</span>)
+                  : ""}
+              </div>
+            </>
+          )}
 
           {/* contact info */}
           <h4>Contatcs</h4>
@@ -179,18 +207,27 @@ const Profile = () => {
             <FontAwesomeIcon icon={faEnvelope} height={15} />
             <span className="ml-2">{user ? user.email : ""}</span>
           </div>
-          <div className={styles.contact}>
-            <FontAwesomeIcon icon={faInstagram} height={15} />
-            <span className="ml-2">{user ? user.insta : ""}</span>
-          </div>
-          <div className={styles.contact}>
-            <FontAwesomeIcon icon={faGithub} height={15} />
-            <span className="ml-2">{user ? user.github : ""}</span>
-          </div>
-          <div className={styles.contact}>
-            <FontAwesomeIcon icon={faLinkedin} height={15} />
-            <span className="ml-2">{user ? user.linkedin : ""}</span>
-          </div>
+
+          {user?.insta && (
+            <div className={styles.contact}>
+              <FontAwesomeIcon icon={faInstagram} height={15} />
+              <span className="ml-2">{user.insta}</span>
+            </div>
+          )}
+
+          {user?.github && (
+            <div className={styles.contact}>
+              <FontAwesomeIcon icon={faGithub} height={15} />
+              <span className="ml-2">{user.github}</span>
+            </div>
+          )}
+
+          {user?.linkedin && (
+            <div className={styles.contact}>
+              <FontAwesomeIcon icon={faLinkedin} height={15} />
+              <span className="ml-2">{user.linkedin}</span>
+            </div>
+          )}
         </section>
 
         <section className={`col-12 col-md-9 ${styles.infograph}`}>
@@ -198,7 +235,7 @@ const Profile = () => {
             <h4 className="mb-4">Portofolio</h4>
             <div className="d-flex justify-content-between flex-wrap">
               <div className={`col-12 m-0 p-0 ${styles.portfolio}`}>
-                {portos
+                {portos && portos.length > 0
                   ? portos.map((porto) => (
                       <div className="d-flex flex-column text-center col-3 mr-2">
                         <h6>
@@ -211,7 +248,7 @@ const Profile = () => {
                           width={150}
                           height={150}
                         />
-                        {/* {localStorage.getItem("user") ? (
+                        {isWorker ? (
                           <Button
                             title={
                               <>
@@ -228,17 +265,10 @@ const Profile = () => {
                           />
                         ) : (
                           ""
-                        )} */}
+                        )}
                       </div>
                     ))
-                  : ""}
-                {/* <Image
-                  src={"/assets/banner.png"}
-                  alt="user avatar"
-                  width={150}
-                  height={150}
-                />
-                <h6>First Application</h6> */}
+                  : "- Belum ada Portfolio -"}
               </div>
             </div>
           </div>
@@ -247,7 +277,7 @@ const Profile = () => {
             <h4 className="mb-4">Pengalaman Kerja</h4>
             <div>
               <div className={styles.experience}>
-                {expis
+                {expis && expis.length > 0
                   ? expis.map((exp) => (
                       <div className="d-flex col-12 align-items-center mb-3">
                         <img
@@ -267,7 +297,7 @@ const Profile = () => {
                             <p className="m-0">{exp.description}</p>
                           </div>
 
-                          {/* {localStorage.getItem("user") ? (
+                          {isWorker ? (
                             <Button
                               title={
                                 <FontAwesomeIcon
@@ -281,11 +311,11 @@ const Profile = () => {
                             />
                           ) : (
                             ""
-                          )} */}
+                          )}
                         </div>
                       </div>
                     ))
-                  : ""}
+                  : "- Belum ada pengalaman kerja -"}
               </div>
 
               {/* <div className={styles.experience}>
