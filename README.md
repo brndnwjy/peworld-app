@@ -1,6 +1,9 @@
 # Peworld (Frontend)
 
 <!-- Logo -->
+<div align="center">
+<img src="./documentation/logo.svg" align="center" width="200" height="auto" />
+</div>
 
 <!-- Table of Contents -->
 ## Table of Contents
@@ -101,6 +104,73 @@ Contributions are what make the open source community such an amazing place to b
 
 <!-- Screenshoots -->
 ## Screenshoots
+<table>
+  <tr>
+    <td><image src="./documentation/register-w.jpeg" alt="Register - Worker" width=100% ></td>
+    <td><image src="./documentation/login-w.jpeg" alt="Login - Worker" width=100%/></td>
+  </tr>
+  <tr>
+    <td align="center">Register (Worker)</td>
+    <td align="center">Login (Worker)</td>
+  </tr>
+  
+  <tr>
+    <td><image src="./documentation/register-r.jpeg" alt="Register - Recruiter" width=100% ></td>
+    <td><image src="./documentation/login-r.jpeg" alt="Login - Recruiter" width=100%/></td>
+  </tr>
+  <tr>
+    <td align="center">Register (Recruiter)</td>
+    <td align="center">Login (Recruiter)</td>
+  </tr>
+  
+  <tr>
+    <td><image src="./documentation/profile-detail-w.jpeg" alt="Profile - Worker" width=100%></td>
+    <td><image src="./documentation/profile-edit-w.jpeg" alt="Profile Edit - Worker" width=100%></td>
+  </tr>
+  <tr>
+      <td align="center">Profile Detail (Worker)</td>
+      <td align="center">Profile Edit (Worker)</td>
+  </tr>
+
+  <tr>
+    <td><image src="./documentation/profile-exp-w.jpeg" alt="Profile Exp - Worker" width=100%></td>
+    <td><image src="./documentation/profile-porto-w.jpeg" alt="Profile Porto - Worker" width=100%/></td>
+  </tr>
+   <tr>
+    <td align="center">Profile Edit - Experience Sect. (Worker)</td>
+    <td align="center">Profile Portfolio - Experience Sect. (Worker)</td>
+  </tr>
+  
+  <tr>
+    <td><image src="./documentation/profile-detail-r.jpeg" alt="Profile - Recruiter" width=100%></td>
+    <td><image src="./documentation/profile-edit-r.jpeg" alt="Recipe - Delete" width=100%></td>
+  </tr>
+  <tr>
+      <td align="center">Profile Detail (Recruiter)</td>
+       <td align="center">Profile Edit (Recruiter)</td>
+  </tr>
+  
+  <tr>
+    <td><image src="./documentation/home-r.jpeg" alt="Homepage" width=100%></td>
+    <td><image src="./documentation/home-search-r.jpeg" alt="Homepage - Search result" width=100%></td>
+  </tr>
+  <tr>
+      <td align="center">Homepage (Recruiter)</td>
+     <td align="center">Homepage - Search Result (Recruiter)</td>
+  </tr>
+  
+  <tr>
+    <td><image src="./documentation/talent-detail-r.jpeg" alt="Talent Detail" width=100%></td>
+    <td><image src="./documentation/hiring.jpeg" alt="Hiring Page" width=100%></td>    
+  </tr>
+  <tr>
+     <td align="center">Talent Detail (Recruiter)</td>
+     <td align="center">Hiring Page (Recruiter)</td>
+  </tr>
+</table>
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- Related Projects -->
 ## Related Project
