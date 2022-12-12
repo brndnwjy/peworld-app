@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 
-const Home = ({ data }) => {
+const Home = () => {
   const router = useRouter();
 
   const [user, setUser] = useState();
@@ -148,18 +148,18 @@ const Home = ({ data }) => {
   );
 };
 
-export async function getServerSideProps(context) {
-  const result = await axios.get(
-    `https://modern-jay-peplum.cyclic.app/v1/company/user/list`
-  );
-  console.log(result.data);
-  return {
-    props: {
-      data: result.data,
-      error: false,
-      errorMessage: "",
-    },
-  };
-}
+// export async function getServerSideProps(context) {
+//   const result = await axios.get(
+//     `https://modern-jay-peplum.cyclic.app/v1/company/user/list`
+//   );
+//   console.log(result.data);
+//   return {
+//     props: {
+//       data: result.data,
+//       error: false,
+//       errorMessage: "",
+//     },
+//   };
+// }
 
 export default Home;
