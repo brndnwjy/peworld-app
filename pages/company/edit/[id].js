@@ -68,7 +68,7 @@ const CompanyEdit = () => {
       formData.append("logo", logo);
     }
 
-    // fetch(`http://localhost:4000/v1/company/update/${id}`, {
+    // fetch(`${process.env.NEXT_API_BACKEND_URL}/company/update/${id}`, {
     //   body: updateForm,
     //   headers: {
     //     "Content-Type": "application/x-www-form-urlencoded",
@@ -76,7 +76,7 @@ const CompanyEdit = () => {
     //   method: "put",
     // })
     axios
-      .put(`http://localhost:4000/v1/company/update/${id}`, updateForm)
+      .put(`${process.env.NEXT_API_BACKEND_URL}/company/update/${id}`, updateForm)
       .then((res) => {
         alert("update berhasil");
         console.log(res.data);
@@ -93,7 +93,7 @@ const CompanyEdit = () => {
 
   const getCompany = async () => {
     const result = await axios.get(
-      `http://localhost:4000/v1/company/detail/${id}`
+      `${process.env.NEXT_API_BACKEND_URL}/company/detail/${id}`
     );
     console.log(result.data.data[0]);
     setCompany(result.data.data[0]);

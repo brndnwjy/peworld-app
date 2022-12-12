@@ -23,7 +23,7 @@ const nextConfig = {
     ]
   },
   images: {
-    domains: ['localhost']
+    domains: ['res.cloudinary.com', 'http://res.cloudinary.com/']
   },
 }
 

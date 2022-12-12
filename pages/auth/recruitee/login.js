@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:4000/v1/user/login", loginForm, {
+      .post("${process.env.NEXT_API_BACKEND_URL}/user/login", loginForm, {
         withCredentials: true,
       })
       .then((res) => {

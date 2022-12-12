@@ -27,7 +27,7 @@ const CompanyLogin = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:4000/v1/company/login", loginForm, {
+      .post("${process.env.NEXT_API_BACKEND_URL}/company/login", loginForm, {
         withCredentials: true,
       })
       .then((res) => {

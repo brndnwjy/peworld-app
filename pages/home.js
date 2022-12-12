@@ -23,7 +23,7 @@ const Home = ({ data }) => {
   const filterUser = (key, page) => {
     axios
       .get(
-        `http://localhost:4000/v1/company/user/list?search=${
+        `${process.env.NEXT_API_BACKEND_URL}/company/user/list?search=${
           search ? search : ""
         }&page=${page ? page : 1}`
       )
@@ -114,7 +114,7 @@ const Home = ({ data }) => {
 };
 
 export async function getServerSideProps(context) {
-  const result = await axios.get(`http://localhost:4000/v1/company/user/list`);
+  const result = await axios.get(`${process.env.NEXT_API_BACKEND_URL}/company/user/list`);
   console.log(result.data);
   return {
     props: { 

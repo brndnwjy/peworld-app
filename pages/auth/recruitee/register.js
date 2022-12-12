@@ -35,7 +35,7 @@ const Register = () => {
     }
 
     axios
-      .post("http://localhost:4000/v1/user/register", registerForm)
+      .post("${process.env.NEXT_API_BACKEND_URL}/user/register", registerForm)
       .then(() => {
         router.push("/auth/login");
         swal({

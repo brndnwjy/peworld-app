@@ -71,7 +71,7 @@ const ProfileEdit = () => {
     }
 
     axios
-      .put(`http://localhost:4000/v1/user/update/${id}`, formData)
+      .put(`${process.env.NEXT_API_BACKEND_URL}/user/update/${id}`, formData)
       .then(() => {
         swal({
           title: "Account updated!",
@@ -100,7 +100,7 @@ const ProfileEdit = () => {
 
     if (newSkill.name) {
       axios
-        .post(`http://localhost:4000/v1/user/skill`, newSkill)
+        .post(`${process.env.NEXT_API_BACKEND_URL}/user/skill`, newSkill)
         .then(() => {
           swal({
             title: "Skill added!",
@@ -137,7 +137,7 @@ const ProfileEdit = () => {
       newExp.description
     ) {
       axios
-        .post(`http://localhost:4000/v1/user/experience`, newExp)
+        .post(`${process.env.NEXT_API_BACKEND_URL}/user/experience`, newExp)
         .then(() => {
           swal({
             title: "Experience added!",
@@ -185,7 +185,7 @@ const ProfileEdit = () => {
     formData.append("image", portoImg);
 
     axios
-      .post(`http://localhost:4000/v1/user/portfolio`, formData)
+      .post(`${process.env.NEXT_API_BACKEND_URL}/user/portfolio`, formData)
       .then(() => {
         swal({
           title: "Portfolio added",
@@ -209,8 +209,8 @@ const ProfileEdit = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/v1/user/${id}`)
-      // .get(`http://localhost:4000/v1/user/${id}`, {
+      .get(`${process.env.NEXT_API_BACKEND_URL}/user/${id}`)
+      // .get(`${process.env.NEXT_API_BACKEND_URL}/user/${id}`, {
       //   headers: {Cookie: {localToken} },
       // })
       .then((res) => {
@@ -223,7 +223,7 @@ const ProfileEdit = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/v1/company/list`)
+      .get(`${process.env.NEXT_API_BACKEND_URL}/company/list`)
       .then((res) => {
         console.log(res.data.data);
         setCompanies(res.data.data);

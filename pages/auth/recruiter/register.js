@@ -35,7 +35,7 @@ const CompanyRegister = () => {
     }
 
     axios
-      .post("http://localhost:4000/v1/company/register", registerForm)
+      .post("${process.env.NEXT_API_BACKEND_URL}/company/register", registerForm)
       .then(() => {
         router.push("/auth/company/login");
         swal({
