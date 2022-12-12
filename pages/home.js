@@ -4,7 +4,7 @@ import Navi from "../components/module/navi";
 import Footer from "../components/module/footer";
 // import AccountCard from "../components/module/accountCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faLocationPin } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/home.module.css";
 import Button from "../components/base/button";
 import { useRouter } from "next/router";
