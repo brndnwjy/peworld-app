@@ -37,8 +37,8 @@
 
 .btn-white-alt,
 .btn-white {
-  background-color: #ffffff;
-  color: #5e50a1;
+  background-color: #ffffff !important;
+  color: #5e50a1 !important;
 }
 
 .btn-white-alt:hover,
