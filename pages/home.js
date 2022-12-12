@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-key */
 import Navi from "../components/module/navi";
 import Footer from "../components/module/footer";
-import AccountCard from "../components/module/accountCard";
+// import AccountCard from "../components/module/accountCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/home.module.css";
@@ -10,6 +10,7 @@ import Button from "../components/base/button";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 const Home = ({ data }) => {
   const router = useRouter();
@@ -85,22 +86,57 @@ const Home = ({ data }) => {
 
           {user
             ? user.map((item) => (
-                <AccountCard
-                avatar={item.avatar}
-                  name={item.fullname}
-                  job={item.title === null ? "Jobseeker" : item.title}
-                  location={
-                    item.location === null ? "Nowhere" : item.location
-                  }
-                  action={() => router.push(`/profile/${item.user_id}`)}
-                />
+                <div className={styles.card}>
+                  <div className={styles["card-info"]}>
+                    <Image
+                      src={item.avatar ? item.avatar : "/assets/banner.png"}
+                      alt="user avatar"
+                      width={100}
+                      height={100}
+                      style={{ objectFit: "cover" }}
+                    />
+                    <div className={styles["account-info"]}>
+                      <h4>{item.fullname}</h4>
+                      <p>{item.title}</p>
+                      <div>
+                        <FontAwesomeIcon icon={faLocationPin} height={13} />
+                        <span className="ml-2">{item.location}</span>
+                      </div>
+                      <div className={styles.skillset}>
+                        <span>Javascript</span>
+                        <span>Golang</span>
+                        <span>PHP</span>
+                      </div>
+                    </div>
+                  </div>
+                  <Button
+                    title="Lihat Profile"
+                    type="button"
+                    classname={styles.button}
+                    onclick={() => router.push(`/profile/${item.user_id}`)}
+                  />
+                </div>
+
+                // <AccountCard
+                // avatar={item.avatar}
+                //   name={item.fullname}
+                //   job={item.title === null ? "Jobseeker" : item.title}
+                //   location={
+                //     item.location === null ? "Nowhere" : item.location
+                //   }
+                //   action={() => router.push(`/profile/${item.user_id}`)}
+                // />
               ))
             : ""}
 
           <div className={`${styles["page-container"]}`}>
             {pagination &&
               new Array(pagination.totalPage).fill().map((item, index) => (
-                <button className={styles['page-btn']} onClick={() => handlePage(index + 1)} key={index}>
+                <button
+                  className={styles["page-btn"]}
+                  onClick={() => handlePage(index + 1)}
+                  key={index}
+                >
                   {index + 1}
                 </button>
               ))}
@@ -113,10 +149,12 @@ const Home = ({ data }) => {
 };
 
 export async function getServerSideProps(context) {
-  const result = await axios.get(`https://modern-jay-peplum.cyclic.app/v1/company/user/list`);
+  const result = await axios.get(
+    `https://modern-jay-peplum.cyclic.app/v1/company/user/list`
+  );
   console.log(result.data);
   return {
-    props: { 
+    props: {
       data: result.data,
       error: false,
       errorMessage: "",
