@@ -61,7 +61,7 @@ const Profile = () => {
       dangerMode: true,
     }).then(async (confirm) => {
       if (confirm) {
-        await axios.delete(`${process.env.NEXT_API_BACKEND_URL}/user/portfolio/${val}`);
+        await axios.delete(`https://modern-jay-peplum.cyclic.app/v1/user/portfolio/${val}`);
         swal({
           title: "Deletion",
           text: `Portfolio deleted`,
@@ -80,7 +80,7 @@ const Profile = () => {
       dangerMode: true,
     }).then(async (confirm) => {
       if (confirm) {
-        await axios.delete(`${process.env.NEXT_API_BACKEND_URL}/user/experience/${val}`);
+        await axios.delete(`https://modern-jay-peplum.cyclic.app/v1/user/experience/${val}`);
         swal({
           title: "Deletion",
           text: `Job Experience deleted`,
@@ -92,8 +92,8 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_API_BACKEND_URL}/user/${id}`)
-      // .get(`${process.env.NEXT_API_BACKEND_URL}/user/${id}`, {
+      .get(`https://modern-jay-peplum.cyclic.app/v1/user/${id}`)
+      // .get(`https://modern-jay-peplum.cyclic.app/v1/user/${id}`, {
       //   headers: {Cookie: {localToken} },
       // })
       .then((res) => {
@@ -106,7 +106,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_API_BACKEND_URL}/user/${id}/skill`)
+      .get(`https://modern-jay-peplum.cyclic.app/v1/user/${id}/skill`)
       .then((res) => {
         setSkills(res.data.skills);
       })
@@ -117,7 +117,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_API_BACKEND_URL}/user/${id}/portfolio`)
+      .get(`https://modern-jay-peplum.cyclic.app/v1/user/${id}/portfolio`)
       .then((res) => {
         setPortos(res.data.portfolio);
       })
@@ -128,7 +128,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_API_BACKEND_URL}/user/${id}/experience`)
+      .get(`https://modern-jay-peplum.cyclic.app/v1/user/${id}/experience`)
       .then((res) => {
         console.log(res.data.experiences);
         setExpis(res.data.experiences);

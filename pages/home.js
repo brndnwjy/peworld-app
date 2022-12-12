@@ -3,7 +3,6 @@
 import Navi from "../components/module/navi";
 import Footer from "../components/module/footer";
 import AccountCard from "../components/module/accountCard";
-import Input from "../components/base/input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/home.module.css";
@@ -23,7 +22,7 @@ const Home = ({ data }) => {
   const filterUser = (key, page) => {
     axios
       .get(
-        `${process.env.NEXT_API_BACKEND_URL}/company/user/list?search=${
+        `https://modern-jay-peplum.cyclic.app/v1/company/user/list?search=${
           search ? search : ""
         }&page=${page ? page : 1}`
       )
@@ -114,7 +113,7 @@ const Home = ({ data }) => {
 };
 
 export async function getServerSideProps(context) {
-  const result = await axios.get(`${process.env.NEXT_API_BACKEND_URL}/company/user/list`);
+  const result = await axios.get(`https://modern-jay-peplum.cyclic.app/v1/company/user/list`);
   console.log(result.data);
   return {
     props: { 

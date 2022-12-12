@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault();
 
     axios
-      .post("${process.env.NEXT_API_BACKEND_URL}/user/login", loginForm, {
+      .post("https://modern-jay-peplum.cyclic.app/v1/user/login", loginForm, {
         withCredentials: true,
       })
       .then((res) => {

@@ -27,7 +27,7 @@ const CompanyLogin = () => {
     e.preventDefault();
 
     axios
-      .post("${process.env.NEXT_API_BACKEND_URL}/company/login", loginForm, {
+      .post("https://modern-jay-peplum.cyclic.app/v1/company/login", loginForm, {
         withCredentials: true,
       })
       .then((res) => {

@@ -71,7 +71,7 @@ const ProfileEdit = () => {
     }
 
     axios
-      .put(`${process.env.NEXT_API_BACKEND_URL}/user/update/${id}`, formData)
+      .put(`https://modern-jay-peplum.cyclic.app/v1/user/update/${id}`, formData)
       .then(() => {
         swal({
           title: "Account updated!",
@@ -100,7 +100,7 @@ const ProfileEdit = () => {
 
     if (newSkill.name) {
       axios
-        .post(`${process.env.NEXT_API_BACKEND_URL}/user/skill`, newSkill)
+        .post(`https://modern-jay-peplum.cyclic.app/v1/user/skill`, newSkill)
         .then(() => {
           swal({
             title: "Skill added!",
@@ -137,7 +137,7 @@ const ProfileEdit = () => {
       newExp.description
     ) {
       axios
-        .post(`${process.env.NEXT_API_BACKEND_URL}/user/experience`, newExp)
+        .post(`https://modern-jay-peplum.cyclic.app/v1/user/experience`, newExp)
         .then(() => {
           swal({
             title: "Experience added!",
@@ -185,7 +185,7 @@ const ProfileEdit = () => {
     formData.append("image", portoImg);
 
     axios
-      .post(`${process.env.NEXT_API_BACKEND_URL}/user/portfolio`, formData)
+      .post(`https://modern-jay-peplum.cyclic.app/v1/user/portfolio`, formData)
       .then(() => {
         swal({
           title: "Portfolio added",
@@ -209,8 +209,8 @@ const ProfileEdit = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_API_BACKEND_URL}/user/${id}`)
-      // .get(`${process.env.NEXT_API_BACKEND_URL}/user/${id}`, {
+      .get(`https://modern-jay-peplum.cyclic.app/v1/user/${id}`)
+      // .get(`https://modern-jay-peplum.cyclic.app/v1/user/${id}`, {
       //   headers: {Cookie: {localToken} },
       // })
       .then((res) => {
@@ -223,7 +223,7 @@ const ProfileEdit = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_API_BACKEND_URL}/company/list`)
+      .get(`https://modern-jay-peplum.cyclic.app/v1/company/list`)
       .then((res) => {
         console.log(res.data.data);
         setCompanies(res.data.data);

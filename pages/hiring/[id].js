@@ -20,8 +20,8 @@ const Hiring = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_API_BACKEND_URL}/user/${id}`)
-      // .get(`${process.env.NEXT_API_BACKEND_URL}/user/${id}`, {
+      .get(`https://modern-jay-peplum.cyclic.app/v1/user/${id}`)
+      // .get(`https://modern-jay-peplum.cyclic.app/v1/user/${id}`, {
       //   headers: {Cookie: {localToken} },
       // })
       .then((res) => {
@@ -34,7 +34,7 @@ const Hiring = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_API_BACKEND_URL}/user/${id}/skill`)
+      .get(`https://modern-jay-peplum.cyclic.app/v1/user/${id}/skill`)
       .then((res) => {
         setSkills(res.data.skills);
       })

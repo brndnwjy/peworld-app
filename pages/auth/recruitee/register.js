@@ -35,7 +35,7 @@ const Register = () => {
     }
 
     axios
-      .post("${process.env.NEXT_API_BACKEND_URL}/user/register", registerForm)
+      .post("https://modern-jay-peplum.cyclic.app/v1/user/register", registerForm)
       .then(() => {
         router.push("/auth/login");
         swal({
