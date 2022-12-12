@@ -23,18 +23,21 @@ const Navi = () => {
 
   useEffect(() => {
     let data;
-    if (localStorage.getItem("company")) {
-      data = JSON.parse(localStorage.getItem("company"));
-    } else if (localStorage.getItem("user")) {
-      data = JSON.parse(localStorage.getItem("user"));
-    }
-    setLocalData(data);
-    if (data.company_id || data.user_id) {
-      setIsToken(true);
-    }
+    if (localStorage.getItem("token")) {
+      if (localStorage.getItem("company")) {
+        data = JSON.parse(localStorage.getItem("company"));
+      } else if (localStorage.getItem("user")) {
+        data = JSON.parse(localStorage.getItem("user"));
+      }
 
-    if (data.company_id) {
-      setIsRecruiter(true);
+      setLocalData(data);
+      if (data.company_id || data.user_id) {
+        setIsToken(true);
+      }
+
+      if (data.company_id) {
+        setIsRecruiter(true);
+      }
     }
   }, []);
 
