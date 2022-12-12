@@ -35,20 +35,38 @@
   margin-left: 15px !important;
 }
 
+.btn-white-alt,
 .btn-white {
   background-color: #ffffff;
   color: #5e50a1;
 }
 
+.btn-white-alt:hover,
 .btn-white:hover {
   background-color: #5e50a1;
   color: #ffffff;
   transition: 0.5s;
 }
 
+.btn-purple-alt:focus,
+.btn-white-alt:focus,
 .btn-purple:focus,
 .btn-white:focus {
   outline: none;
+}
+
+/* Navi before login */
+.btn-purple-alt,
+.btn-white-alt {
+  height: 40px;
+  width: 200px;
+  background-color: #5e50a1;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border: 1px solid #5e50a1;
+  border-radius: 4px;
+  margin-left: 15px !important;
 }
 
 @media only screen and (max-width: 600px) {

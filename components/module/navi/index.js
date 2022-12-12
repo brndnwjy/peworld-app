@@ -180,7 +180,7 @@ const Navi = () => {
                 <Button
                   title="Masuk"
                   type="button"
-                  classname={`mb-3 m-md-0 ${styles["btn-white"]}`}
+                  classname={`mb-3 m-md-0 ${styles["btn-white-alt"]}`}
                   onclick={() => router.push("/auth/login")}
                 />
               </li>
@@ -189,7 +189,7 @@ const Navi = () => {
                 <Button
                   title="Daftar"
                   type="button"
-                  classname={styles["btn-purple"]}
+                  classname={styles["btn-purple-alt"]}
                   onclick={() => router.push("/auth/register")}
                 />
               </li>
