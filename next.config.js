@@ -23,7 +23,7 @@ const nextConfig = {
     ]
   },
   images: {
-    domains: ['https://peworld-app.vercel.app', 'res.cloudinary.com', 'http://res.cloudinary.com/']
+    domains: ['https://peworld-app.vercel.app', 'res.cloudinary.com', 'http://res.cloudinary.com/', 'http://localhost:4000', 'localhost']
   },
 }
 

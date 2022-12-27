@@ -27,7 +27,7 @@
 .search-input,
 .search-input:focus {
   height: 60px;
-  width: 70%;
+  width: 73%;
   align-self: flex-start;
   border: none;
   padding: 0 15px;
@@ -44,24 +44,11 @@
   height: 40px;
   border: none;
   border-left: 2px solid #9ea0a5;
-  margin-left: 20px;
-}
-
-.sort-btn,
-.sort-btn:focus {
-  width: 100px;
-  height: 50px;
-  background-color: transparent;
-  color: #9ea0a5;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  outline: none;
 }
 
 .search-btn,
 .search-btn:focus {
-  width: 100px;
+  width: 160px;
   height: 40px;
   background-color: #5e50a1;
   color: #ffffff;

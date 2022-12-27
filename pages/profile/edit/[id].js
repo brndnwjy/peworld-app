@@ -71,7 +71,10 @@ const ProfileEdit = () => {
     }
 
     axios
-      .put(`https://modern-jay-peplum.cyclic.app/v1/user/update/${id}`, formData)
+      .put(
+        `https://modern-jay-peplum.cyclic.app/v1/user/update/${id}`,
+        formData
+      )
       .then(() => {
         swal({
           title: "Account updated!",
@@ -171,7 +174,7 @@ const ProfileEdit = () => {
 
   const handlePortoImg = (e) => {
     setPortoImg(e.target.files[0]);
-    setPortoImgPreview([URL.createObjectURL(e.target.files[0])]);
+    // setPortoImgPreview([URL.createObjectURL(e.target.files[0])]);
   };
 
   const handlePorto = (e) => {
@@ -189,13 +192,15 @@ const ProfileEdit = () => {
       .then(() => {
         swal({
           title: "Portfolio added",
-          icon: "added",
+          icon: "success",
         });
         // setUpdate();
-        router.push();
+        // router.push();
       })
       .catch((err) => {
+        console.log("ini error")
         console.log(err);
+        console.log("ini error")
         swal({
           title: "Failed",
           icon: "warning",
@@ -240,7 +245,6 @@ const ProfileEdit = () => {
       <main className={styles.main}>
         <section className={`col-12 col-md-3 ${styles["profile-card"]}`}>
           <div className={`col-12 ${styles.profile}`}>
-
             {user?.avatar ? (
               <Image
                 src={avatarPreview ? avatarPreview : user.avatar}
@@ -268,7 +272,9 @@ const ProfileEdit = () => {
             <h6 className="m-0">{user?.title ? user.title : "Jobseeker"}</h6>
             <div className={styles.location}>
               <FontAwesomeIcon icon={faLocationPin} height={13} />
-              <span className="ml-2">{user?.location ? user.location : "Nowhere"}</span>
+              <span className="ml-2">
+                {user?.location ? user.location : "Nowhere"}
+              </span>
             </div>
           </div>
 
@@ -298,7 +304,9 @@ const ProfileEdit = () => {
                 id="fullname"
                 name="fullname"
                 type="text"
-                placeholder={user?.fullname ? user.fullname : "Masukkan nama lengkap"}
+                placeholder={
+                  user?.fullname ? user.fullname : "Masukkan nama lengkap"
+                }
                 onchange={handleInput}
                 classname={`mb-4 ${styles.input}`}
               />
@@ -307,7 +315,9 @@ const ProfileEdit = () => {
                 id="title"
                 name="title"
                 type="text"
-                placeholder={user?.title ? user.title : "Masukkan bidang pekerjaan"}
+                placeholder={
+                  user?.title ? user.title : "Masukkan bidang pekerjaan"
+                }
                 onchange={handleInput}
                 classname={`mb-4 ${styles.input}`}
               />
@@ -317,7 +327,9 @@ const ProfileEdit = () => {
                 name="location"
                 type="text"
                 placeholder={
-                  user?.location ? user.location : "Masukkan domisili tempat tinggal"
+                  user?.location
+                    ? user.location
+                    : "Masukkan domisili tempat tinggal"
                 }
                 onchange={handleInput}
                 classname={`mb-4 ${styles.input}`}
@@ -328,7 +340,9 @@ const ProfileEdit = () => {
                 name="description"
                 type="text"
                 placeholder={
-                  user?.description ? user.description : "Masukkan deskripsi diri"
+                  user?.description
+                    ? user.description
+                    : "Masukkan deskripsi diri"
                 }
                 onchange={handleInput}
                 classname={`mb-4 ${styles.input}`}
@@ -338,7 +352,9 @@ const ProfileEdit = () => {
                 id="insta"
                 name="insta"
                 type="text"
-                placeholder={user?.insta ? user.insta : "Masukkan akun Instagram"}
+                placeholder={
+                  user?.insta ? user.insta : "Masukkan akun Instagram"
+                }
                 onchange={handleInput}
                 classname={`mb-4 ${styles.input}`}
               />
@@ -347,7 +363,9 @@ const ProfileEdit = () => {
                 id="github"
                 name="github"
                 type="text"
-                placeholder={user?.github ? user.github : "Masukkan akun Github"}
+                placeholder={
+                  user?.github ? user.github : "Masukkan akun Github"
+                }
                 onchange={handleInput}
                 classname={`mb-4 ${styles.input}`}
               />
@@ -356,7 +374,9 @@ const ProfileEdit = () => {
                 id="linkedin"
                 name="linkedin"
                 type="text"
-                placeholder={user?.linkedin ? user.linkedin : "Masukkan akun Linkedin"}
+                placeholder={
+                  user?.linkedin ? user.linkedin : "Masukkan akun Linkedin"
+                }
                 onchange={handleInput}
                 classname={styles.input}
               />
@@ -535,14 +555,14 @@ const ProfileEdit = () => {
                 className={`mb-4 ${styles["file-input"]}`}
                 htmlFor="app-image"
               >
-                {portoImgPreview ? (
+                {/* {portoImgPreview ? (
                   <Image src={portoImgPreview} alt="Porto" />
                 ) : (
-                  <>
-                    <FontAwesomeIcon icon={faImage} height={50} />
-                    <span>Masukkan foto</span>
-                  </>
-                )}
+                  <> */}
+                <FontAwesomeIcon icon={faImage} height={50} />
+                <span>Masukkan foto</span>
+                {/* </>
+                )} */}
               </label>
               <input
                 id="app-image"

@@ -71,11 +71,11 @@ const Home = () => {
               className={styles["search-icon"]}
             />
             <div className={styles.vl} />
-            <Button
+            {/* <Button
               title="Sortir"
               type="button"
               classname={styles["sort-btn"]}
-            />
+            /> */}
             <Button
               title="Cari"
               type="button"

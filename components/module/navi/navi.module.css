@@ -39,12 +39,13 @@
 .btn-white {
   background-color: #ffffff !important;
   color: #5e50a1 !important;
+  transition: 0.5s;
 }
 
 .btn-white-alt:hover,
 .btn-white:hover {
-  background-color: #5e50a1;
-  color: #ffffff;
+  background-color: #5e50a1 !important;
+  color: #ffffff !important;
   transition: 0.5s;
 }
 
