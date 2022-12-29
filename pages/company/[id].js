@@ -22,6 +22,7 @@ const CompanyProfile = () => {
   // let localToken;
 
   const [company, setCompany] = useState();
+  const [logo, setLogo] = useState(false);
 
   // useEffect(() => {
   //   localToken = localStorage ? localStorage.getItem("token") : "";
@@ -36,8 +37,9 @@ const CompanyProfile = () => {
       //   headers: {Cookie: {localToken} },
       // })
       .then((res) => {
-        setCompany(res.data.data);
-        // console.log(res.data.data);
+        setCompany(res.data.data[0]);
+        setLogo(res.data.data[0].logo);
+        console.log(res.data.data[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -57,11 +59,7 @@ const CompanyProfile = () => {
           <div className={styles["company-info"]}>
             <Image
               src={
-                company
-                  ? company.logo === null
-                    ? "/assets/banner.png"
-                    : company.logo
-                  : "/assets/banner.png"
+                logo ? logo : "/assets/banner.png"
               }
               alt="company logo"
               width={150}
