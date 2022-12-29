@@ -41,8 +41,8 @@ const CompanyEdit = () => {
   };
 
   const handleUpdate = (e) => {
-    console.log(updateForm);
-    console.log(logo);
+    // console.log(updateForm);
+    // console.log(logo);
     e.preventDefault();
 
     let formData = new FormData();
@@ -76,7 +76,7 @@ const CompanyEdit = () => {
     //   method: "put",
     // })
     axios
-      .put(`https://modern-jay-peplum.cyclic.app/v1/company/update/${id}`, updateForm)
+      .put(`https://modern-jay-peplum.cyclic.app/v1/company/update/${id}`, formData)
       .then((res) => {
         alert("update berhasil");
         console.log(res.data);
@@ -87,7 +87,6 @@ const CompanyEdit = () => {
   };
 
   useEffect(() => {
-    console.log("id : ", id);
     getCompany();
   }, [router.isReady]);
 
@@ -95,7 +94,6 @@ const CompanyEdit = () => {
     const result = await axios.get(
       `https://modern-jay-peplum.cyclic.app/v1/company/detail/${id}`
     );
-    console.log(result.data.data[0]);
     setCompany(result.data.data[0]);
     if (result.data.data[0].logo) {
       setPreview(result.data.data[0].logo);
